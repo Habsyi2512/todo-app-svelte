@@ -1,7 +1,9 @@
 <script lang="ts">
   import FormInput from "./components/FormInput.svelte";
+  import { fade } from "svelte/transition";
+  import type { TodosProps } from "./interface/interface";
 
-  let todos: { todo: string; isDone: boolean }[] = $state([]);
+  let todos: TodosProps[] = $state([]);
 </script>
 
 <main class="bg-[url('/background.jpg')] min-h-screen pt-[30px]">
@@ -12,14 +14,16 @@
       Todo APP
     </h1>
 
-    {#each todos as todo}
-      <li>{todo.todo}</li>
-    {:else}
-      <div>Tidak Ada todo</div>
-    {/each}
+    <div class="p-4">
+      {#each todos as todo}
+        <li class="border" transition:fade>{todo.todo}</li>
+      {:else}
+        <p class="text-center font-bold text-neutral-600">Tidak Ada todo</p>
+      {/each}
+    </div>
   </div>
 
-  <FormInput {todos} />
+  <FormInput bind:todos />
 </main>
 
 <style></style>

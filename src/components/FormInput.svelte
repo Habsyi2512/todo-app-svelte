@@ -22,10 +22,6 @@
       text = "";
     }
   }
-
-  $effect(() => {
-    $inspect("todos = ", todos);
-  });
 </script>
 
 <form
